@@ -43,6 +43,9 @@ jobs:
       - run:
           name: Install dependencies                        # Whatever you want to do
           command: |
+                    sudo apt-get update
+                    #sudo apt-get update -y && sudo apt-get upgrade -y
+                    #sudo apt upgrade -y
                     sudo apt-get install openssh-client git -y
                     sudo apt install ansible -y
                     sudo apt install curl
@@ -202,8 +205,9 @@ jobs:
           name: Install dependencies                      # install the dependencies needed for your playbook Tar and Gzip are two of the most common utilities for archiving and compressing files
           working_directory: ~/
           command: |
-                    sudo apt-get update -y && sudo apt-get upgrade -y
-                    sudo apt upgrade -y
+                    sudo apt-get update
+                    #sudo apt-get update -y && sudo apt-get upgrade -y
+                    #sudo apt upgrade -y
                     sudo apt-get install openssh-client git -y
                     sudo apt install ansible -y
                     sudo apt install curl
@@ -281,8 +285,9 @@ jobs:
           name: Install dependencies                          # install the dependencies needed for your playbook Tar and Gzip are two of the most common utilities for archiving and compressing files
           working_directory: ~/
           command: |
-                    sudo apt-get update -y && sudo apt-get upgrade -y
-                    sudo apt upgrade -y
+                    sudo apt-get update
+                    #sudo apt-get update -y && sudo apt-get upgrade -y
+                    #sudo apt upgrade -y
                     sudo apt-get install openssh-client git -y
                     sudo apt install ansible -y
                     sudo apt install curl
@@ -352,8 +357,9 @@ jobs:
           name: Install dependencies # install the dependencies needed for your playbook Tar and Gzip are two of the most common utilities for archiving and compressing files
           working_directory: ~/
           command: |
-                    sudo apt-get update -y && sudo apt-get upgrade -y
-                    sudo apt upgrade -y
+                    sudo apt-get update
+                    #sudo apt-get update -y && sudo apt-get upgrade -y
+                    #sudo apt upgrade -y
                     sudo apt-get install openssh-client git -y
                     sudo apt install ansible -y
                     sudo apt install curl
