@@ -31,10 +31,10 @@ commands:
           name: Destroy environments
           when: on_fail
           command: |
-                    aws cloudformation delete-stack --stack-name Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:7}
-                    aws cloudformation delete-stack --stack-name jenkins-code-${CIRCLE_WORKFLOW_ID:0:7}
-                    aws s3 rm s3://jenkins-code-${CIRCLE_WORKFLOW_ID:0:7} --recursive
-                    aws s3 rb s3://jenkins-code-${CIRCLE_WORKFLOW_ID:0:7} --force
+                    aws cloudformation delete-stack --stack-name Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:8}
+                    aws cloudformation delete-stack --stack-name jenkins-code-${CIRCLE_WORKFLOW_ID:0:8}
+                    aws s3 rm s3://jenkins-code-${CIRCLE_WORKFLOW_ID:0:8} --recursive
+                    aws s3 rb s3://jenkins-code-${CIRCLE_WORKFLOW_ID:0:8} --force
 jobs:
   deploy-infrastructure:
     <<: *defaults-deploy    # working_directory: ~/project  # Docker image cimg/base:edge-20.04 that supports AWS CLI for deploy infrastructure    # working_directory: ~/project  # Docker image cimg/base:edge-20.04 that supports AWS CLI for deploy infrastructure    # working_directory: ~/project  # Docker image cimg/base:edge-20.04 that supports AWS CLI for deploy infrastructure
@@ -57,21 +57,21 @@ jobs:
                     ls -la
 
       - run:
-          name: Ensure back-end infrastructure exists       # stackName  Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:7}
-          command: |                                        # WebServerName >> Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:7}
+          name: Ensure back-end infrastructure exists       # stackName  Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:8}
+          command: |                                        # WebServerName >> Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:8}
                     aws cloudformation deploy \
                     --template-file ./.circleci/files/Server.yml \
-                    --stack-name "Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:7}" \
-                    --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+                    --stack-name "Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:8}" \
+                    --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:8}" \
                     --tags project=Jenkins-Server
 
       - run:
-          name: Ensure front-end infrastructure exist       # #stackName  S3-Code-${CIRCLE_WORKFLOW_ID:0:7}
-          command: |                                        # BucketName >> jenkins-code-${CIRCLE_WORKFLOW_ID:0:7}
+          name: Ensure front-end infrastructure exist       # #stackName  S3-Code-${CIRCLE_WORKFLOW_ID:0:8}
+          command: |                                        # BucketName >> jenkins-code-${CIRCLE_WORKFLOW_ID:0:8}
                     aws cloudformation deploy \
                     --template-file ./.circleci/files/S3-Code.yml \
-                    --stack-name "jenkins-code-${CIRCLE_WORKFLOW_ID:0:7}" \
-                    --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
+                    --stack-name "jenkins-code-${CIRCLE_WORKFLOW_ID:0:8}" \
+                    --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:8}" \
                     --tags project=Jenkins-S3-Code
 
       - run:
@@ -80,7 +80,7 @@ jobs:
                     cd .circleci/ansible
                     aws ec2 describe-instances \
                     --query 'Reservations[*].Instances[*].PublicIpAddress' \
-                    --filters "Name=tag:Name,Values=Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:7}" \
+                    --filters "Name=tag:Name,Values=Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:8}" \
                     --output text >> inventory.txt
                     cat inventory.txt
       - persist_to_workspace:
@@ -94,7 +94,7 @@ jobs:
                     cd .circleci/urls
                     ServerIP=$(aws ec2 describe-instances \
                     --query 'Reservations[*].Instances[*].PublicIpAddress' \
-                    --filters "Name=tag:Name,Values=Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:7}" \
+                    --filters "Name=tag:Name,Values=Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:8}" \
                     --output text >> Jenkins_Server_IP.txt)
                     declare -x ServerIP
                     ServerIP=$(cat Jenkins_Server_IP.txt)
@@ -102,10 +102,10 @@ jobs:
                     echo "$ServerIP" >> "URLs.txt"
                     cat Jenkins_Server_IP.txt
 
-                    curl -H "Content-Type: text/plain" -H "token: Jenkins-URL-${CIRCLE_WORKFLOW_ID:0:7}" \
+                    curl -H "Content-Type: text/plain" -H "token: Jenkins-URL-${CIRCLE_WORKFLOW_ID:0:8}" \
                     --request PUT \
                     --data "http://${ServerIP}:8080" \
-                    https://api.memstash.io/values/ServerIP_${CIRCLE_WORKFLOW_ID:0:7}
+                    https://api.memstash.io/values/ServerIP_${CIRCLE_WORKFLOW_ID:0:8}
 
       - persist_to_workspace:
           root: ~/
@@ -115,9 +115,9 @@ jobs:
       - run:
           name: export-Jenkins-Server-Public-URL and save
           command: |
-                    JenkinsURL=$(curl -H "token: Jenkins-URL-${CIRCLE_WORKFLOW_ID:0:7}" \
+                    JenkinsURL=$(curl -H "token: Jenkins-URL-${CIRCLE_WORKFLOW_ID:0:8}" \
                     --request GET \
-                    https://api.memstash.io/values/ServerIP_${CIRCLE_WORKFLOW_ID:0:7})
+                    https://api.memstash.io/values/ServerIP_${CIRCLE_WORKFLOW_ID:0:8})
 
                     declare -x JenkinsURL
                     echo "${JenkinsURL}" | cat
@@ -142,7 +142,7 @@ jobs:
                     cd .circleci/urls
                     JenkinsDNS=$(aws ec2 describe-instances \
                     --query 'Reservations[*].Instances[*].PublicDnsName' \
-                    --filters "Name=tag:Name,Values=Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:7}" \
+                    --filters "Name=tag:Name,Values=Jenkins-Server-${CIRCLE_WORKFLOW_ID:0:8}" \
                     --output text >> Jenkins_DNS.txt)
 
                     declare -x JenkinsDNS
@@ -235,7 +235,7 @@ jobs:
       - run:
           name: copy start code to s3
           command: |
-                    aws s3 cp ~/microservices-demo s3://jenkins-code-"${CIRCLE_WORKFLOW_ID:0:7}" --recursive
+                    aws s3 cp ~/microservices-demo s3://jenkins-code-"${CIRCLE_WORKFLOW_ID:0:8}" --recursive
       - persist_to_workspace:
           root: ~/
           paths:
@@ -374,7 +374,7 @@ jobs:
           at: .circleci/ansible/CloudFormation
       - run:
           name: Remove old stacks and files
-          command: |                                                      # WorkflowID_remove=${CIRCLE_WORKFLOW_ID:0:7}
+          command: |                                                      # WorkflowID_remove=${CIRCLE_WORKFLOW_ID:0:8}
                     echo "${Old_Workflow_ID}"
                     echo "${New_Workflow_ID}"
                     echo "${old_stack}"
