@@ -1,8 +1,9 @@
+
 [![CircleCI](https://circleci.com/gh/abdelrazekrizk/Project-5-Cloud-DevOps-Engineer-Capstone/tree/main.svg?style=svg)](https://circleci.com/gh/abdelrazekrizk/Project-5-Cloud-DevOps-Engineer-Capstone/tree/main)
 
 # Project-5-Cloud-DevOps-Engineer-Capstone
 
-Appliyng Skilles
+## Applying Skills
 
 * Working in AWS
 * Using Jenkins or Circle CI to implement Continuous Integration and Continuous Deployment

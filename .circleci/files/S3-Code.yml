@@ -3,7 +3,7 @@ AWSTemplateFormatVersion: 2010-09-09
 
 Description: >
     Abdelrazek Rizk / Jenkins frontend stack.
-    Project-5-Cloud-DevOps-Engineer-Capstone 
+    Project-5-Cloud-DevOps-Engineer-Capstone
 
 Parameters:
   ID:
@@ -16,7 +16,7 @@ Resources:
     Properties:
       BucketName: !Sub "jenkins-code-${ID}"
       AccessControl: PublicRead
-  
+
   JenkinsBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:

@@ -6,7 +6,7 @@ Description: >
     Jenkins server with pre-installed Jenkins plugins and CodeDeploy instances to
     deploy the application using
     Ubuntu 20 Operating System with 8 vCPUs and 32GB of RAM and 120GB of disk space security groups
-     
+
 
 # Create a service role for CodeDeploy
 #https://docs.amazonaws.cn/en_us/codedeploy/latest/userguide/getting-started-create-service-role.html#getting-started-create-service-role-console
@@ -42,8 +42,8 @@ Resources:
           - IpProtocol: tcp
             FromPort: 9333                      # open  port 9333 so that Prometheus can collect our node data and send it to the server.
             ToPort: 9333
-            CidrIp: 0.0.0.0/0        
-          - IpProtocol: tcp  
+            CidrIp: 0.0.0.0/0
+          - IpProtocol: tcp
             FromPort: 9090                      # Prometheus server Core components starting at 9090
             ToPort: 9090
             CidrIp: 0.0.0.0/0
@@ -74,11 +74,11 @@ Resources:
           - IpProtocol: tcp                    # Open port 80 for app server
             FromPort: 80
             ToPort: 80
-            CidrIp: 0.0.0.0/0 
+            CidrIp: 0.0.0.0/0
           - IpProtocol: tcp                    # Open port 80 for jenkins server
             FromPort: 8080
             ToPort: 8080
-            CidrIp: 0.0.0.0/0            
+            CidrIp: 0.0.0.0/0
 
                                                       ################################### EC2 ####################################
 
@@ -102,10 +102,10 @@ Resources:
             sudo apt install awscli -y
             sudo apt install ansible -y
 
-            # install build-essential packages for compiling software.                            
+            # install build-essential packages for compiling software.
             sudo apt install -y build-essential
-            
-            # update upgrade EC2 
+
+            # update upgrade EC2
             sudo apt update -y
             sudo apt upgrade -y
             sudo apt autoremove -y
@@ -113,12 +113,12 @@ Resources:
 
             # restart the server
             sudo apt update -y
-            sudo apt autoclean -y 
+            sudo apt autoclean -y
 
             # restart the server
             sudo apt full-upgrade
             sudo reboot
-            output : { all : '| tee -a /var/log/cloud-init-output.log' }                                              
+            output : { all : '| tee -a /var/log/cloud-init-output.log' }
         InstanceType: m4.2xlarge
         BlockDeviceMappings:
           - DeviceName: "/dev/sda1"
@@ -145,15 +145,14 @@ Outputs:
       Value: !Ref 'JenkinsserverInstance'
 
   JenkinsserverElasticIP:
-      Description: An Elastic IP address is for use either in the EC2-Classic platform 
-      Value: !Ref 'JenkinsserverElasticIP'  
+      Description: An Elastic IP address is for use either in the EC2-Classic platform
+      Value: !Ref 'JenkinsserverElasticIP'
 
   Version:
       Description: AWSTemplateFormatVersion "2010-09-09"
       Value: "2010-09-09"
-  # How To Setup a Firewall with UFW             
+  # How To Setup a Firewall with UFW
   # https://www.digitalocean.com/community/tutorials/how-to-setup-a-firewall-with-ufw-on-an-ubuntu-and-debian-cloud-server
 
 
 
-  
