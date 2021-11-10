@@ -67,13 +67,13 @@ Balance of compute, memory, and network resources
 
 hold starter code
 
- # stage one
+ # Stage one
 
  using Circleci to create Create Infrastructure
 
  <img src="pic\stage1.png"/>
 
-# stage Two
+# Stage Two
  
 using Jenkins to run app and test it
 
