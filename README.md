@@ -54,10 +54,8 @@ our senario
 Create Infrastructure
 
 * Instances
-M4 instances provide a balance of compute, memory, and network resources, and it is a good choice for many applications.
-
-Features:
-
+M4 instances provide a balance of compute, memory, and network resources, and it is a good choice for many applications.  
+Features:  
 2.3 GHz Intel Xeon® E5-2686 v4 (Broadwell) processors or 2.4 GHz Intel Xeon® E5-2676 v3 (Haswell) processors
 EBS-optimized by default at no additional cost
 Support for Enhanced Networking
@@ -69,8 +67,11 @@ hold starter code
 
  # stage one
 
- using Circleci to create Create Infrastructure
-
+ * using Circleci to create Create Infrastructure  
+Step 1: Set Up Prerequisites   
+Step 2: Launch an EC2 Instance   
+Create a Security Group for Your Amazon EC2 Instance Launch Your EC2 Instance   
+Step 3: Install and Configure Jenkins   
  <img src="pic\stage1.png"/>
 
 # stage Two
