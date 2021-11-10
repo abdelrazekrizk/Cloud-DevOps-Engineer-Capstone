@@ -1,4 +1,4 @@
-## Status Badge 
+# Status Badge 
 [![CircleCI](https://circleci.com/gh/abdelrazekrizk/Project-5-Cloud-DevOps-Engineer-Capstone/tree/main.svg?style=svg)](https://circleci.com/gh/abdelrazekrizk/Project-5-Cloud-DevOps-Engineer-Capstone/tree/main)
 
 # Project-5-Cloud-DevOps-Engineer-Capstone
@@ -65,7 +65,7 @@ Balance of compute, memory, and network resources
 
 hold starter code
 
- # stage one
+ # Stage one
 
  * using Circleci to create Create Infrastructure  
 Step 1: Set Up Prerequisites   
@@ -74,7 +74,7 @@ Create a Security Group for Your Amazon EC2 Instance Launch Your EC2 Instance
 Step 3: Install and Configure Jenkins   
  <img src="pic\stage1.png"/>
 
-# stage Two
+# Stage Two
  
 using Jenkins to run app and test it
 
