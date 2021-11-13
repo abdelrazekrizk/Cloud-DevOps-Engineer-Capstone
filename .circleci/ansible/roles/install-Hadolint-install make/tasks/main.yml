@@ -34,8 +34,8 @@
   become: yes
   shell: |
            sudo apt-get install python3-venv -y
-           python3 -m venv ~/.devops
-           source ~/.devops/bin/activate
+           #python3 -m venv ~/.devops
+           #source ~/.devops/bin/activate
   args:
      warn: false
 
