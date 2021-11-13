@@ -17,8 +17,8 @@
 - name: "Download and install the Open Java Development Kit (OpenJDK)"
   become: yes
   shell: |
-           sudo apt-get install openjdk-8-jdk -y
-           #sudo apt install openjdk-11-jdk -y
+           sudo apt-get install openjdk-11-jdk -y
+           #sudo apt install openjdk-8-jdk -y
            #sudo apt install java-1.8.0-openjdk -y
   args:
      warn: false
