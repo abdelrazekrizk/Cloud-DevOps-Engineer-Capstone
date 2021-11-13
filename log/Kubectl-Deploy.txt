@@ -1,0 +1,26 @@
+ubuntu@ip-172-31-80-219:~/GitHub/Project_5-Cloud-DevOps-Engineer-Capstone/microservices-demo-master$ kubectl apply -f ./release/kubernetes-manifests.yaml
+deployment.apps/emailservice created
+service/emailservice created
+deployment.apps/checkoutservice created
+service/checkoutservice created
+deployment.apps/recommendationservice created
+service/recommendationservice created
+deployment.apps/frontend created
+service/frontend created
+service/frontend-external created
+deployment.apps/paymentservice created
+service/paymentservice created
+deployment.apps/productcatalogservice created
+service/productcatalogservice created
+deployment.apps/cartservice created
+service/cartservice created
+deployment.apps/loadgenerator created
+deployment.apps/currencyservice created
+service/currencyservice created
+deployment.apps/shippingservice created
+service/shippingservice created
+deployment.apps/redis-cart created
+service/redis-cart created
+deployment.apps/adservice created
+service/adservice created
+
