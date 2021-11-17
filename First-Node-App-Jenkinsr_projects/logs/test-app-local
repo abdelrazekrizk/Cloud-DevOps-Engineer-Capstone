@@ -1,0 +1,7 @@
+ubuntu@ip-172-31-90-31:~/GitHub/First-Node-App-With-Jenkins/Node-App$ npm start
+
+> node-app@0.0.0 start /home/ubuntu/GitHub/First-Node-App-With-Jenkins/Node-App
+> node ./bin/www
+
+GET / 200 181.371 ms - 170
+GET /stylesheets/style.css 200 3.214 ms - 111
