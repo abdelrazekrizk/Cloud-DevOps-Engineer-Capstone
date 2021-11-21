@@ -14,6 +14,7 @@
     - Install-Docker-Engine
     - Install-minikube-Engine
     - Install-Kubernetes-Engine
+    - install-Hadolint-install make
 
 
   environment:
